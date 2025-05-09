@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3>My Appointments</h3>
+<table class="table">
+  <thead><tr><th>ID</th><th>Time</th><th>Status</th></tr></thead>
+  <tbody>
+    {% for appt in appointments %}
+    <tr>
+      <td>{{ appt.id }}</td>
+      <td>{{ appt.scheduledTime }}</td>
+      <td>{{ appt.status }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<hr>
+<h4>Create New Appointment</h4>
+<form method="POST" action="/appointments/create">
+  <div class="mb-2">
+    <input name="scheduledTime" type="datetime-local" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-success">Create</button>
+</form>
+
+<hr>
+<h4>Update Appointment</h4>
+<form method="POST" action="/appointments/update">
+  <div class="mb-2">
+    <input name="id" class="form-control" placeholder="Appointment ID" required>
+  </div>
+  <div class="mb-2">
+    <input name="scheduledTime" type="datetime-local" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-warning">Update</button>
+</form>
+
+<hr>
+<h4>Delete Appointment</h4>
+<form method="POST" action="/appointments/delete">
+  <div class="mb-2">
+    <input name="id" class="form-control" placeholder="Appointment ID" required>
+  </div>
+  <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+
+{% endblock %}
